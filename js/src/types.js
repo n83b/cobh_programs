@@ -11,7 +11,7 @@ class Types extends React.Component {
     }
 
     componentDidMount() {
-        fetch(this.props.url + '/wp-json/wp/v2/program_types')
+        fetch(this.props.url + '/wp-json/wp/v2/program_types?per_page=100')
         .then(res => res.json())
         .then(
             (result) => {
@@ -24,13 +24,16 @@ class Types extends React.Component {
 
     render() {
         return (
-            <ul id="cobh-types">
-                {this.state.types.map(type => (
-                    <li key={type.id} onClick={this.props.onClick.bind(this, type.id)}>
-                        {type.name}
-                    </li>
-                ))}
-            </ul>
+            <div id="cobh-types">
+                <p>Type of Health Service:</p>
+                <ul>
+                    {this.state.types.map(type => (
+                        <li key={type.id} onClick={this.props.onClick.bind(this, type.id)}>
+                            {type.name}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         );
     }
 }

@@ -18,7 +18,10 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
+    "query-string": "^6.4.2",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0",
+    "react-select": "^2.4.2"
   }
 }

@@ -12,7 +12,7 @@ class Programs extends React.Component {
     }
 
     componentDidMount() {
-        fetch(this.props.url + '/wp-json/wp/v2/cobh_program')
+        fetch(this.props.url + '/wp-json/wp/v2/cobh_program?per_page=100')
         .then(res => res.json())
         .then(
             (result) => {
@@ -39,9 +39,9 @@ class Programs extends React.Component {
             })
 
             //filter by location
-            if (this.props.location != 0){
+            if (this.props.location != null){
                 programsFiltered = programsFiltered.filter(prog => {
-                    return prog.program_locations.includes(this.props.location);
+                    return prog.program_locations.includes(this.props.location.value);
                 });
             }
 
@@ -49,12 +49,11 @@ class Programs extends React.Component {
             <div>
                 <ul>
                     {programsFiltered.map(program => (
-                        <li key={program.id} onClick={this.props.onClick.bind(this, program)}>
-                            {program.title.rendered}
+                        <li key={program.id} onClick={this.props.onClick.bind(this, program)} className={program.color}>
+                            <a href='#cobh-program-details'>{program.title.rendered}</a>
                         </li>
                     ))}
                 </ul>
-
                 <Program program={this.props.selectedProgram}/>
             </div>
         }

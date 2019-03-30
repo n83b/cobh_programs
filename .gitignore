@@ -1,2 +1,5 @@
 js/node_modules
 acf
+acf.zip
+.DS_Store
+js/.DS_Store

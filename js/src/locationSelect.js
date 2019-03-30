@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Select from 'react-select';
 
 
 class LocationSelect extends React.Component {
@@ -7,8 +8,9 @@ class LocationSelect extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            locations: []
+            locations: [],
         }
+
     }
 
     componentDidMount() {
@@ -16,8 +18,14 @@ class LocationSelect extends React.Component {
         .then(res => res.json())
         .then(
             (result) => {
+                let locations = []
+
+                result.map(location => (
+                    locations.push({value: location.id, label: location.name})
+                ))
+
                 this.setState({
-                    locations: result
+                    locations: locations
                 })
             }
         )
@@ -27,16 +35,24 @@ class LocationSelect extends React.Component {
         
         return (
             <div>
-                <select onChange={this.props.onChange}>
-                    {this.state.locations.map(location => (
-                        <option key={location.id} value={location.id}>
-                            {location.name}
-                        </option>
-                    ))}
-                </select>
+                <div className="locationlabel">Location:</div>
+                <Select 
+                    value={this.props.selectedLocation}
+                    onChange={this.props.onChange}
+                    options={this.state.locations}
+                />
             </div>
         );
     }
 }
 
 export default LocationSelect
+
+
+/*
+ {this.state.locations.map(location => (
+                        <option key={location.id} value={location.id}>
+                            {location.name}
+                        </option>
+                    ))}
+*/
