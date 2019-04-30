@@ -14,6 +14,14 @@ class Programs extends React.Component {
    
     }
 
+    outputImage(img){
+        var output = '';
+        if (img){
+            output = <img src={img} />
+        }
+        return output;
+    }
+
     render() {
         let output;
         let programDetail;
@@ -50,6 +58,7 @@ class Programs extends React.Component {
                 <ul>
                     {programsFiltered.map(program => (
                         <li key={program.id} onClick={this.props.onClick.bind(this, program)} className={program.color}>
+                            {this.outputImage(program.thumbnail)}
                             {program.title}
                         </li>
                     ))}
