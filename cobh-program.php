@@ -37,8 +37,11 @@ class COBH_program{
 		private function __construct(){
 
             add_action('init', array($this, 'program_custom_post_type'));
-            add_action('init', array($this, 'program_cat_type'));
+            add_action('init', array($this, 'program_cat_resource_type'));
+            add_action('init', array($this, 'program_cat_service_type'));
             add_action('init', array($this, 'program_cat_location'));
+            add_action('init', array($this, 'program_cat_age'));
+
             add_filter("rest_prepare_cobh_program", array($this, 'cobh_rest_prepare_program'), 10, 3);
             // 3. Hide ACF field group menu item
             //add_filter('acf/settings/show_admin', '__return_false');
@@ -77,7 +80,7 @@ class COBH_program{
 				wp_enqueue_script('jquery');
 				//change these to enqueue if not restricted to shortcode
 				wp_register_style( 'cobh-program-css', plugins_url('cobh-program.css', __FILE__), array(), COBH_PROGRAM_VER, false);
-				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), COBH_PROGRAM_VER, true );
+				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.5', true );
 				//wp_enqueue_style( 'cobh-program-css');
 				//wp_enqueue_script( 'cobh-program-js'); 
 				//wp_localize_script('mv-plugin-js', 'cobh_program_ajax', array(	
@@ -123,7 +126,7 @@ class COBH_program{
                 'menu_icon'	=> 'dashicons-admin-home',
                 'taxonomies'	=> array('wsr_custom_tax'),
                 'rewrite'	=> array('slug' => 'programs'),
-                'supports'	=> array('title'),
+                'supports'	=> array('title', 'editor'),
             ));
         
             flush_rewrite_rules(true);
@@ -133,7 +136,7 @@ class COBH_program{
         // --------------------------------------------------------------------
     
 
-        function program_cat_type(){
+        function program_cat_service_type(){
                 $taxonomy_object_types = array(
                     'cobh_program'
                 );
@@ -144,12 +147,31 @@ class COBH_program{
                     'rest_base'    => 'program_types',
                     'show_admin_column' => true,
                     'hierarchical' 	=> true,
-                    'label' 		=> 'Type',
+                    'label' 		=> 'Service Type',
                     'rewrite'	=> array('slug' => 'type')
                 );
 
             register_taxonomy('cobh_program_type', $taxonomy_object_types, $taxonomy_args);
         }
+
+
+        function program_cat_resource_type(){
+            $taxonomy_object_types = array(
+                'cobh_program'
+            );
+
+            $taxonomy_args = array(
+                'show_ui' 		=> true,
+                'show_in_rest' => true,
+                'rest_base'    => 'resource_types',
+                'show_admin_column' => true,
+                'hierarchical' 	=> true,
+                'label' 		=> 'Resource Type',
+                'rewrite'	=> array('slug' => 'resource')
+            );
+
+        register_taxonomy('cobh_program_resource_type', $taxonomy_object_types, $taxonomy_args);
+    }
 
 
         // --------------------------------------------------------------------
@@ -174,6 +196,25 @@ class COBH_program{
         }
 
 
+        function program_cat_age(){
+            $taxonomy_object_types = array(
+                'cobh_program'
+            );
+
+            $taxonomy_args = array(
+                'show_ui' 		=> true,
+                'show_in_rest' => true,
+                'rest_base'    => 'program_age',
+                'show_admin_column' => true,
+                'hierarchical' 	=> true,
+                'label' 		=> 'Age',
+                'rewrite'	=> array('slug' => 'age')
+            );
+
+            register_taxonomy('cobh_program_age', $taxonomy_object_types, $taxonomy_args);
+        }
+        
+
         // --------------------------------------------------------------------
 
 
@@ -181,22 +222,86 @@ class COBH_program{
 		 * shortcode function
 		 */
 		function cobh_program_shortcode($atts){
+            wp_enqueue_style( 'cobh-program-css');
+            wp_enqueue_script( 'cobh-program-js');
+            
+            //get first resource type as default
+            $resource_type_terms = get_terms( array(
+                'taxonomy' => 'cobh_program_resource_type'
+            ) );
+             
+            //display: program or resource
+			$a = shortcode_atts( array(
+		        'resource_type' => $resource_type_terms[0]->term_id
+		    ), $atts );
+            
 
-			// $a = shortcode_atts( array(
-		    //     'element' => '#cobh-program'
-		    // ), $atts );
+            $service_types = [];
+            $service_type_terms = get_terms( array(
+                'taxonomy' => 'cobh_program_type'
+            ) );
 
+            foreach($service_type_terms as $term){
+                $terms['id'] = $term->term_id;
+                $terms['name'] = $term->name;
+                array_push($service_types, $terms);
+            }
+            
+            $programs = [];
+            $program_posts = get_posts($args = array(
+                'numberposts' => 100,
+                'post_type'   => 'cobh_program'
+            ));
 
-			wp_enqueue_style( 'cobh-program-css');
-			wp_enqueue_script( 'cobh-program-js'); 
-			// wp_localize_script('mv-plugin-js', 'cobh_program_ajax', array(	
-			// 	"ajaxurl" => admin_url('admin-ajax.php'),
-			// 	"ajax_nonce" => wp_create_nonce('security-nounce-here'),
-			// 	"siteurl" => get_bloginfo('url'),
-			// 	"path" => plugins_url('', __FILE__)
-			// ));
+            foreach ( $program_posts as $post ) {
+                $posts['id'] = $post->ID;
+                $posts['title'] = $post->post_title;
+                $posts['content'] = $post->post_content;
+                $posts['funding'] = get_field('funding', $post->ID);
+                $posts['who_is_it_for'] = get_field('who_is_it_for', $post->ID);
+                $posts['how_to_refer'] = get_field('how_to_refer', $post->ID);
+                $posts['therapy__service_offered'] = get_field('therapy__service_offered', $post->ID);
+                $posts['supervisor'] = get_field('supervisor', $post->ID);
+                $posts['assistant_manager'] = get_field('assistant_manager', $post->ID);
+                $posts['locations_available'] = get_field('locations_available', $post->ID);
+                $posts['color'] = get_field('color', $post->ID);
+                $posts['doc_1'] = get_field('doc_1', $post->ID);
+                $posts['doc_2'] = get_field('doc_2', $post->ID);
+                $posts['pdf_link'] = get_field('pdf_link', $post->ID);
+                
+                $posts['program_types'] = [];
+                $typeTerms = wp_get_post_terms( $post->ID, 'cobh_program_type', array() );
+                foreach ( $typeTerms as $types ) {
+                    array_push($posts['program_types'], $types->term_id);
+                }
 
+                $posts['resource_types'] = [];
+                $resourcesTerms = wp_get_post_terms( $post->ID, 'cobh_program_resource_type', array() );
+                foreach ( $resourcesTerms as $resource ) {
+                    array_push($posts['resource_types'], $resource->term_id);
+                }
+
+                $posts['program_locations'] = [];
+                $locationTerms = wp_get_post_terms( $post->ID, 'cobh_program_location', array() );
+                foreach ( $locationTerms as $location ) {
+                    array_push($posts['program_locations'], $location->term_id);
+                }
+
+                $posts['program_age'] = [];
+                $ageTerms = wp_get_post_terms( $post->ID, 'cobh_program_age', array() );
+                foreach ( $ageTerms as $age ) {
+                    array_push($posts['program_age'], $age->term_id);
+                }
+
+                array_push($programs, $posts);
+            }
+
+            
+            
 			ob_start(); ?> 
+            <script> var cobh_resource_type = <?php echo $a['resource_type']; ?> </script>
+            <script>var cobh_service_types = <?php echo json_encode($service_types)?> </script>
+            <script> var cobh_programs = <?php echo json_encode($programs)?> </script>
 			<?php include('cobh-program-view.php'); ?>
 			<?php return ob_get_clean();
 		}

@@ -6,20 +6,20 @@ class Types extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            types: []
+            types: cobh_service_types
         }
     }
 
     componentDidMount() {
-        fetch(this.props.url + '/wp-json/wp/v2/program_types?per_page=100')
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    types: result
-                })
-            }
-        )
+        // fetch(this.props.url + '/wp-json/wp/v2/program_types?per_page=100')
+        // .then(res => res.json())
+        // .then(
+        //     (result) => {
+        //         this.setState({
+        //             types: result
+        //         })
+        //     }
+        // )
     }
 
     render() {

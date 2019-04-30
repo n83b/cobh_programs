@@ -12,6 +12,29 @@ class Program extends React.Component {
 		}
 	}
 
+	outputForms(label, field1, field2){
+		if(field1 || field2){
+			var btn1 = '';
+			var btn2 = '';
+			if (field1){
+				btn1 = <a className="cobh_word_form_btn" href={field1}>REFERRAL FROM (Word)</a>
+			}
+			if (field2){
+				btn2 = <a className="cobh_rtf_form_btn" href={field2}>REFERRAL FROM (RTF)</a>
+			}
+
+			return (
+				<tr><td>Forms</td><td>{btn1} {btn2} </td></tr>	
+			)
+		}
+	}
+
+	outputPathway(label, field){
+		if (field){
+			return <tr><td>{label}</td><td> <a className="cobh_pathway_form_btn" href={field}>REFERRAL PATHWAY</a></td></tr>	
+		}
+	}
+
 	render() {
 
 		let output;
@@ -19,7 +42,8 @@ class Program extends React.Component {
 		if (this.props.program){
 			output = 
 				<div className={this.props.program.color}>
-					<h2 dangerouslySetInnerHTML={{ __html:this.props.program.title.rendered}} />
+					<h2 dangerouslySetInnerHTML={{ __html:this.props.program.title}} />
+					<div className="program-content" dangerouslySetInnerHTML={{ __html:this.props.program.content}} />
 					<table>
 						<tbody>
 							{this.outputField('Funding', this.props.program.funding)}
@@ -29,6 +53,8 @@ class Program extends React.Component {
 							{this.outputField('Supervisor', this.props.program.supervisor)}
 							{this.outputField('Assistant manager', this.props.program.assistant_manager)}
 							{this.outputField('Locations available', this.props.program.locations_available)}
+							{this.outputForms('Forms', this.props.program.doc_1, this.props.program.doc_2)}
+							{this.outputPathway('Referral Pathway', this.props.program.pdf_link)}
 						</tbody>
 					</table>
 				</div>

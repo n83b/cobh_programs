@@ -19,6 +19,7 @@ class LocationSelect extends React.Component {
         .then(
             (result) => {
                 let locations = []
+                locations.push({value: null, label: 'Any'})
 
                 result.map(location => (
                     locations.push({value: location.id, label: location.name})
