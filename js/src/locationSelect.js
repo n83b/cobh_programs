@@ -48,12 +48,3 @@ class LocationSelect extends React.Component {
 }
 
 export default LocationSelect
-
-
-/*
- {this.state.locations.map(location => (
-                        <option key={location.id} value={location.id}>
-                            {location.name}
-                        </option>
-                    ))}
-*/

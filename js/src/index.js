@@ -43,12 +43,12 @@ class App extends React.Component {
 	typeSelect(typeId) {
 		this.setState({selectedType: typeId})
 		this.setState({selectedProgram: null})
-		scrollToComponent(this.FilterSection, { offset: -100, align: 'top', duration: 500, ease:'inCirc'})
+		scrollToComponent(this.FilterSection, { offset: -100, align: 'top', duration: 850, ease:'inSine'})
 	}
 
 	selectProgram(program){
 		this.setState({selectedProgram: program})
-		scrollToComponent(this.ProgramSection, { offset: -100, align: 'top', duration: 500, ease:'inCirc'});
+		scrollToComponent(this.ProgramSection, { offset: -100, align: 'top', duration: 850, ease:'inSine'});
 	}
 	
 	locationSelect(location){

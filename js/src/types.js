@@ -11,15 +11,6 @@ class Types extends React.Component {
     }
 
     componentDidMount() {
-        // fetch(this.props.url + '/wp-json/wp/v2/program_types?per_page=100')
-        // .then(res => res.json())
-        // .then(
-        //     (result) => {
-        //         this.setState({
-        //             types: result
-        //         })
-        //     }
-        // )
     }
 
     render() {

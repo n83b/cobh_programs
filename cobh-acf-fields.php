@@ -216,6 +216,22 @@ if( function_exists('acf_add_local_field_group') ):
 				'default_value' => '',
 				'placeholder' => '',
 			),
+			array(
+				'key' => 'field_cobh_program_resource_brouchure',
+				'label' => 'Brochure',
+				'name' => 'cobh_brochure',
+				'type' => 'url',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+			),
 		),
 		'location' => array(
 			array(

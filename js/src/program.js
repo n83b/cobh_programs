@@ -35,6 +35,12 @@ class Program extends React.Component {
 		}
 	}
 
+	outputBrochure(label, field){
+		if (field){
+			return <tr><td>{label}</td><td> <a className="cobh_brochure_form_btn" href={field}>Brochure</a></td></tr>	
+		}
+	}
+
 	render() {
 
 		let output;
@@ -55,6 +61,7 @@ class Program extends React.Component {
 							{this.outputField('Locations available', this.props.program.locations_available)}
 							{this.outputForms('Forms', this.props.program.doc_1, this.props.program.doc_2)}
 							{this.outputPathway('Referral Pathway', this.props.program.pdf_link)}
+							{this.outputBrochure('Brouchure', this.props.program.cobh_brochure)}
 						</tbody>
 					</table>
 				</div>

@@ -80,7 +80,7 @@ class COBH_program{
 				wp_enqueue_script('jquery');
 				//change these to enqueue if not restricted to shortcode
 				wp_register_style( 'cobh-program-css', plugins_url('cobh-program.css', __FILE__), array(), COBH_PROGRAM_VER, false);
-				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.5', true );
+				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.8', true );
 				//wp_enqueue_style( 'cobh-program-css');
 				//wp_enqueue_script( 'cobh-program-js'); 
 				//wp_localize_script('mv-plugin-js', 'cobh_program_ajax', array(	
@@ -268,7 +268,8 @@ class COBH_program{
                 $posts['doc_1'] = get_field('doc_1', $post->ID);
                 $posts['doc_2'] = get_field('doc_2', $post->ID);
                 $posts['pdf_link'] = get_field('pdf_link', $post->ID);
-                
+                $posts['cobh_brochure'] = get_field('cobh_brochure', $post->ID);
+
                 $posts['program_types'] = [];
                 $typeTerms = wp_get_post_terms( $post->ID, 'cobh_program_type', array() );
                 foreach ( $typeTerms as $types ) {
