@@ -80,7 +80,7 @@ class COBH_program{
 				wp_enqueue_script('jquery');
 				//change these to enqueue if not restricted to shortcode
 				wp_register_style( 'cobh-program-css', plugins_url('cobh-program.css', __FILE__), array(), COBH_PROGRAM_VER, false);
-				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.31', true );
+				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.32', true );
 				//wp_enqueue_style( 'cobh-program-css');
 				//wp_enqueue_script( 'cobh-program-js'); 
 				//wp_localize_script('mv-plugin-js', 'cobh_program_ajax', array(	

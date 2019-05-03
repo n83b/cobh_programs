@@ -61,7 +61,7 @@ class Program extends React.Component {
 							{this.outputField('Locations available', this.props.program.locations_available)}
 							{this.outputForms('Forms', this.props.program.doc_1, this.props.program.doc_2)}
 							{this.outputPathway('Referral Pathway', this.props.program.pdf_link)}
-							{this.outputBrochure('Brouchure', this.props.program.cobh_brochure)}
+							{this.outputBrochure('Brochure', this.props.program.cobh_brochure)}
 						</tbody>
 					</table>
 				</div>
