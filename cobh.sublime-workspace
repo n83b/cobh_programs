@@ -440,7 +440,15 @@
 		"selected_items":
 		[
 			[
+				"php-d",
+				"Snippet: n83b-php-debug-config"
+			],
+			[
 				"debugg",
+				"Debugger: Quit"
+			],
+			[
+				"debugger",
 				"Debugger: Open in project"
 			],
 			[
@@ -450,10 +458,6 @@
 			[
 				"debug",
 				"Preferences: Debugger Settings"
-			],
-			[
-				"debugger",
-				"Debugger: Quit"
 			],
 			[
 				"remove",
@@ -905,11 +909,14 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/cobh_programs"
+		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/cobh_programs",
+		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/cobh_programs/.vscode"
 	],
 	"file_history":
 	[
+		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/cobh_programs/cobh-program.php",
 		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/cobh_programs/cobh.sublime-project",
+		"/Users/nathanbarnes/Library/Application Support/Sublime Text 3/Packages/User/n83b-php-debug-config.sublime-snippet",
 		"/Users/nathanbarnes/htdocs/lsp/index.php",
 		"/Users/nathanbarnes/Library/Application Support/Sublime Text 3/Packages/User/n83b-browser-sync.sublime-snippet",
 		"/Users/nathanbarnes/htdocs/lsp/index.js-bak",
@@ -1034,9 +1041,7 @@
 		"/Users/nathanbarnes/Library/Caches/Transmit/0E6D24E8-4024-40E8-8B75-D2BDA271F040/cometry.neonet.com.au/home/cometryneonetcom/public_html/wp-content/themes/divi-child/functions.php",
 		"/Users/nathanbarnes/Library/Caches/Transmit/DFB89C82-50AC-413F-8A6B-E9283291DEA1/cometry.neonet.com.au/home/cometryneonetcom/public_html/wp-content/themes/divi-child/single.php",
 		"/Users/nathanbarnes/Library/Caches/Transmit/31748BDC-B662-44DE-BDC8-9BD9CBD6CD34/cometry.neonet.com.au/home/cometryneonetcom/public_html/wp-content/themes/divi-child/functions.php",
-		"/Users/nathanbarnes/Library/Caches/Transmit/FB9B0CBF-064C-4885-8C36-DE52A869F4C4/websector.net.au/home/admin/web/cuepoweraustralia.com.au/public_html/wp-config.php",
-		"/Users/nathanbarnes/htdocs/test/wp-content/plugins/wsr-shooting-dynamic-events/wsr-shooting-dynamic-events.php",
-		"/Users/nathanbarnes/Library/Caches/Transmit/ACB97D9E-982F-49BD-B440-5D80617E452C/websector.net.au/home/admin/web/lilypadbyron.com/public_html/wp-config.php"
+		"/Users/nathanbarnes/Library/Caches/Transmit/FB9B0CBF-064C-4885-8C36-DE52A869F4C4/websector.net.au/home/admin/web/cuepoweraustralia.com.au/public_html/wp-config.php"
 	],
 	"find":
 	{
@@ -1107,10 +1112,6 @@
 		]
 	},
 	"menu_visible": true,
-	"output.Debugger":
-	{
-		"height": 174.0
-	},
 	"output.diagnostics":
 	{
 		"height": 109.0
@@ -1161,6 +1162,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/Documents/sublime-projects/plugin-starter.sublime-project"
+			]
 		],
 		"width": 380.0
 	},

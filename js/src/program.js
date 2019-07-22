@@ -17,10 +17,10 @@ class Program extends React.Component {
 			var btn1 = '';
 			var btn2 = '';
 			if (field1){
-				btn1 = <a className="cobh_word_form_btn" href={field1}>REFERRAL FROM (Word)</a>
+				btn1 = <a className="cobh_word_form_btn" href={field1}>REFERRAL FORM (Word)</a>
 			}
 			if (field2){
-				btn2 = <a className="cobh_rtf_form_btn" href={field2}>REFERRAL FROM (RTF)</a>
+				btn2 = <a className="cobh_rtf_form_btn" href={field2}>REFERRAL FORM (RTF)</a>
 			}
 
 			return (
