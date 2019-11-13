@@ -1,0 +1,16 @@
+#cobh-types ul li:before{
+    background:none!important;
+    height: 0!important;
+}
+
+.serviceImage{
+    width: 50%;
+    max-width: 80px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.serviceName{
+    text-align: center;
+}

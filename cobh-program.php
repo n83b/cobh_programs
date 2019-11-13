@@ -49,8 +49,8 @@ class COBH_program{
 			//front end
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts'));
 			add_shortcode('cobh_program', array($this, 'cobh_program_shortcode'));
-			add_action( 'wp_ajax_wsr_action', array($this, 'wsr_ajax_callback' ));
-			add_action( 'wp_ajax_nopriv_wsr_action', array($this, 'wsr_ajax_callback' ));
+			//add_action( 'wp_ajax_wsr_action', array($this, 'wsr_ajax_callback' ));
+			//add_action( 'wp_ajax_nopriv_wsr_action', array($this, 'wsr_ajax_callback' ));
 		}
 
 
@@ -241,11 +241,25 @@ class COBH_program{
                 'taxonomy' => 'cobh_program_type'
             ) );
 
+            $serviceCount = 0;
             foreach($service_type_terms as $term){
                 $terms['id'] = $term->term_id;
                 $terms['name'] = $term->name;
+                $image_id = get_field('service_image', 'cobh_program_type_' . $term->term_id);
+                $terms['image'] = wp_get_attachment_image_url($image_id['id'], 'thumbnail');
+                $terms['color'] = get_field('service_colour', 'cobh_program_type_' . $term->term_id);
                 array_push($service_types, $terms);
+                $serviceCount++;
             }
+
+            $serviceColumns = 100 / $serviceCount;
+            $custom_css = "
+                #cobh-types ul li{
+                    background-image: none;
+                    width: {$serviceColumns}%
+                }";
+
+            wp_add_inline_style( 'cobh-program-css', $custom_css );
             
             $programs = [];
             $program_posts = get_posts($args = array(

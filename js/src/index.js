@@ -7,14 +7,12 @@ import LocationSelect from "./locationSelect.js"
 import AgeSelect from "./ageSelect.js"
 import scrollToComponent from 'react-scroll-to-component';
 
-//http://103.42.110.25/~cobhcoma/dev
-//http://dev.test.com
 class App extends React.Component {
 
 	constructor(props){
     	super(props);
     	this.state ={
-			siteurl: 'http://103.42.110.25/~cobhcoma/dev',
+			siteurl: 'https://cobh.com.au',
 			selectedType: 0,
 			selectedProgram: null,
 			selectedLocation: null,
