@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
 if( !defined( 'COBH_PROGRAM_VER' ) )
-	define( 'COBH_PROGRAM_VER', '1.0.0' );
+	define( 'COBH_PROGRAM_VER', '1.2.0' );
 
 
 
@@ -238,7 +238,8 @@ class COBH_program{
 
             $service_types = [];
             $service_type_terms = get_terms( array(
-                'taxonomy' => 'cobh_program_type'
+                'taxonomy' => 'cobh_program_type',
+                'orderby' => 'term_id'
             ) );
 
             $serviceCount = 0;
