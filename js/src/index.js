@@ -30,13 +30,23 @@ class App extends React.Component {
 		let search = window.location.search;
 		let params = new URLSearchParams(search);
 		let type = params.get('type');
-
+		let programId = params.get('program');
+		
 		if (type){
-			this.typeSelect(parseInt(type))
+			this.typeSelect(parseInt(type));
+		}
+		
+		if (programId){
+			var program;
+			cobh_programs.forEach(item => {
+				if (item.id == programId) {
+					program = item;
+				}
+			});
+			
+			this.selectProgram(program);
 		}
 	}
-
-	
 
 	typeSelect(typeId) {
 		this.setState({selectedType: typeId})

@@ -3,7 +3,7 @@
 Plugin Name: COBH Program Finder
 Plugin URI: http://websector.com.au
 Description: 
-Version: 1.0.0
+Version: 1.2.1
 Author: WSR
 Author URI: http://websector.com.au
 License: A short license name. Example: GPL2
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
 if( !defined( 'COBH_PROGRAM_VER' ) )
-	define( 'COBH_PROGRAM_VER', '1.2.0' );
+	define( 'COBH_PROGRAM_VER', '1.2.1' );
 
 
 
@@ -80,7 +80,7 @@ class COBH_program{
 				wp_enqueue_script('jquery');
 				//change these to enqueue if not restricted to shortcode
 				wp_register_style( 'cobh-program-css', plugins_url('cobh-program.css', __FILE__), array(), COBH_PROGRAM_VER, false);
-				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.32', true );
+				wp_register_script( 'cobh-program-js', plugins_url('js/dist/main.js', __FILE__), array(), '1.4', true );
 				//wp_enqueue_style( 'cobh-program-css');
 				//wp_enqueue_script( 'cobh-program-js'); 
 				//wp_localize_script('mv-plugin-js', 'cobh_program_ajax', array(	
